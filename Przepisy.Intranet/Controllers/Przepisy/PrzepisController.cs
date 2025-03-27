@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Przepisy.Data.Data;
 using Przepisy.Data.Data.Przepisy;
 using Przepisy.Data.Data.Uzytkownicy;
-using Przepisy.Intranet.Data;
 
 namespace Przepisy.Intranet.Controllers.Przepisy
 {
     public class PrzepisController : Controller
     {
-        private readonly PrzepisyIntranetContext _context;
+        private readonly PrzepisyContext _context;
 
-        public PrzepisController(PrzepisyIntranetContext context)
+        public PrzepisController(PrzepisyContext context)
         {
             _context = context;
         }

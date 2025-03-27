@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Przepisy.Data.Data;
 using Przepisy.Data.Data.Uzytkownicy;
-using Przepisy.Intranet.Data;
 
 namespace Przepisy.Intranet.Controllers.Uzytkownicy
 {
     public class UlubionyPrzepisController : Controller
     {
-        private readonly PrzepisyIntranetContext _context;
+        private readonly PrzepisyContext _context;
 
-        public UlubionyPrzepisController(PrzepisyIntranetContext context)
+        public UlubionyPrzepisController(PrzepisyContext context)
         {
             _context = context;
         }

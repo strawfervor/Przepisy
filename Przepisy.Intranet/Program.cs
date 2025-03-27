@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Przepisy.Intranet.Data;
+using Przepisy.Data.Data;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<PrzepisyIntranetContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PrzepisyIntranetContext") ?? throw new InvalidOperationException("Connection string 'PrzepisyIntranetContext' not found.")));
+builder.Services.AddDbContext<PrzepisyContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PrzepisyContext") ?? throw new InvalidOperationException("Connection string 'PrzepisyContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

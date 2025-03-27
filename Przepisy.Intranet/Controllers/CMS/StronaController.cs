@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Przepisy.Data.Data;
 using Przepisy.Data.Data.CMS;
-using Przepisy.Intranet.Data;
 
 namespace Przepisy.Intranet.Controllers.CMS
 {
     public class StronaController : Controller
     {
-        private readonly PrzepisyIntranetContext _context;
+        private readonly PrzepisyContext _context;
 
-        public StronaController(PrzepisyIntranetContext context)
+        public StronaController(PrzepisyContext context)
         {
             _context = context;
         }
