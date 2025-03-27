@@ -50,7 +50,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
         public IActionResult Create()
         {
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania");
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo");
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", ocena.PrzepisId);
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", ocena.UzytkownikId);
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", ocena.UzytkownikId);
             return View(ocena);
         }
 
@@ -86,7 +86,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 return NotFound();
             }
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", ocena.PrzepisId);
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", ocena.UzytkownikId);
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", ocena.UzytkownikId);
             return View(ocena);
         }
 
@@ -123,7 +123,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", ocena.PrzepisId);
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", ocena.UzytkownikId);
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", ocena.UzytkownikId);
             return View(ocena);
         }
 

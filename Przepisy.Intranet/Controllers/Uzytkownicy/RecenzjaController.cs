@@ -50,7 +50,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
         public IActionResult Create()
         {
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania");
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo");
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", recenzja.PrzepisId);
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", recenzja.UzytkownikId);
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", recenzja.UzytkownikId);
             return View(recenzja);
         }
 
@@ -86,7 +86,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 return NotFound();
             }
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", recenzja.PrzepisId);
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", recenzja.UzytkownikId);
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", recenzja.UzytkownikId);
             return View(recenzja);
         }
 
@@ -123,7 +123,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", recenzja.PrzepisId);
-            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", recenzja.UzytkownikId);
+            ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", recenzja.UzytkownikId);
             return View(recenzja);
         }
 
