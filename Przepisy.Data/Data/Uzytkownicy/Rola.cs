@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace Przepisy.Data.Data.Uzytkownicy
         [Required(ErrorMessage = "Nazwa roli jest wymagana")]
         [MaxLength(30)]
         [Display(Name = "Rola")]
-        public string Nazwa { get; set; } = string.Empty;
+        public required string Nazwa { get; set; }
 
         [MaxLength(200)]
         [Display(Name = "Opis roli")]
@@ -23,6 +24,7 @@ namespace Przepisy.Data.Data.Uzytkownicy
 
         [Display(Name = "Cena abonamentu (zł)")]
         [Range(0, 2000)]
+        [Column(TypeName = "money")]
         public decimal CenaAbonamentu { get; set; }
 
         public ICollection<Uzytkownik> Uzytkownicy { get; set; } = new List<Uzytkownik>();

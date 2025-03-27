@@ -16,7 +16,7 @@ namespace Przepisy.Data.Data.Uzytkownicy
 
         [Required(ErrorMessage = "Nazwa użytkownika jest wymagana")]
         [MaxLength(30)]
-        public string NazwaUzytkownika { get; set; } = string.Empty;
+        public required string NazwaUzytkownika { get; set; }
 
         [Required(ErrorMessage = "Hasło jest wymagane")]
         [DataType(DataType.Password)]

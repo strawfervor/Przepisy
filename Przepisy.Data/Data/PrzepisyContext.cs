@@ -29,5 +29,34 @@ namespace Przepisy.Data.Data
         public DbSet<Rola> Rola { get; set; } = default!;
         public DbSet<UlubionyPrzepis> UlubionyPrzepis { get; set; } = default!;
         public DbSet<Uzytkownik> Uzytkownik { get; set; } = default!;
+
+
+        //tabela się nie tworzy bo jest więcej niż jedno kaskadowe usuwanie w bazie, a tego ef nie lubi...
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //wyłącznie kaskadowego usuwania dla ocen
+            modelBuilder.Entity<Ocena>()
+                .HasOne(o => o.Uzytkownik)
+                .WithMany(u => u.Oceny)
+                .HasForeignKey(o => o.UzytkownikId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //to samo dla recenzji
+            modelBuilder.Entity<Recenzja>()
+                .HasOne(r => r.Uzytkownik)
+                .WithMany(u => u.Recenzje)
+                .HasForeignKey(r => r.UzytkownikId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Ulubiony przepis
+            modelBuilder.Entity<UlubionyPrzepis>()
+                .HasOne(up => up.Uzytkownik)
+                .WithMany(u => u.UlubionePrzepisy)
+                .HasForeignKey(up => up.UzytkownikId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+
     }
 }

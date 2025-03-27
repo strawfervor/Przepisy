@@ -16,7 +16,7 @@ namespace Przepisy.Data.Data.Uzytkownicy
         [Required(ErrorMessage = "Treść recenzji jest wymagana")]
         [Display(Name = "Recenzja")]
         [MaxLength(1000)]
-        public string Tresc { get; set; } = string.Empty;
+        public required string Tresc { get; set; }
 
         [Display(Name = "Data dodania")]
         public DateTime DataDodania { get; set; } = DateTime.Now;
