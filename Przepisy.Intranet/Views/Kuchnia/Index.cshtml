@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Przepisy.Data.Data.Przepisy.Kuchnia>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdKuchni">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdKuchni">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdKuchni">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

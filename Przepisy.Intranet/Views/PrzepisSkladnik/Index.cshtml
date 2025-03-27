@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Przepisy.Data.Data.Przepisy.PrzepisSkladnik>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Przepis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skladnik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IloscGram)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Przepis.OpisWykonania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skladnik.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscGram)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPrzepisSkladnik">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPrzepisSkladnik">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPrzepisSkladnik">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

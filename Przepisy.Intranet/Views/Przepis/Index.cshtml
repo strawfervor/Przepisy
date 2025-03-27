@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Przepisy.Data.Data.Przepisy.Przepis>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tytul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KrotkiOpis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpisWykonania)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trudnosc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlZdjecia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CzyAktywny)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SredniaOcena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kuchnia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrupaPrzepisu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tytul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KrotkiOpis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpisWykonania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trudnosc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlZdjecia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CzyAktywny)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SredniaOcena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor.Haslo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kuchnia.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrupaPrzepisu.Nazwa)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPrzepisu">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPrzepisu">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPrzepisu">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

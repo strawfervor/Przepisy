@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Przepisy.Data.Data.CMS
 {
-    class Strona
+    public class Strona
     {
         [Key]//to co niżej będzie podstawowym kluczem tabeli
         public int IdStrony { get; set; }
