@@ -14,11 +14,11 @@ namespace Przepisy.Data.Data.Przepisy
 
         [Required(ErrorMessage = "Id przepisu jest wymagane")]
         public int PrzepisId { get; set; }
-        public Przepis Przepis { get; set; } = null!;
+        public Przepis? Przepis { get; set; }
 
         [Required(ErrorMessage = "Id składnika jest wymagane")]
         public int SkladnikId { get; set; }
-        public Skladnik Skladnik { get; set; } = null!;
+        public Skladnik? Skladnik { get; set; }
 
         [Display(Name = "Ilość (gram)")]
         [Required(ErrorMessage = "Waga składnika jest wymagana")]

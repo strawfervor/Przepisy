@@ -27,7 +27,7 @@ namespace Przepisy.Data.Data.Przepisy
         public bool CzyAktywny { get; set; } = false;
 
         [Display(Name = "Zdjęcie")]
-        public string UrlZdjecia { get; set; } = string.Empty;
+        public string? UrlZdjecia { get; set; }
 
         public ICollection<PrzepisSkladnik> Przepisy { get; set; } = new List<PrzepisSkladnik>();
     }

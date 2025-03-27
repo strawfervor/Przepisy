@@ -21,7 +21,7 @@ namespace Przepisy.Data.Data.Przepisy
 
         [MaxLength(300)]
         [Display(Name = "Krótki opis przepisu")]
-        public string KrotkiOpis { get; set; } = string.Empty;
+        public string? KrotkiOpis { get; set; }
 
         [Required(ErrorMessage = "Opis przepisu jest wymagany")]
         [Display(Name = "Opis przygotowania")]
@@ -32,7 +32,7 @@ namespace Przepisy.Data.Data.Przepisy
         public Trudnosc Trudnosc { get; set; } = Trudnosc.Sredni;//tutaj będzie komboboks
 
         [Display(Name = "Zdjęcie potrawy")]
-        public string UrlZdjecia { get; set; } = string.Empty;
+        public string? UrlZdjecia { get; set; }
 
         public bool CzyAktywny { get; set; } = false;
 
@@ -41,15 +41,15 @@ namespace Przepisy.Data.Data.Przepisy
 
         [ForeignKey("Autor")]
         public int AutorId { get; set; }
-        public Uzytkownik Autor { get; set; } = null!;
+        public Uzytkownik? Autor { get; set; }
 
         [ForeignKey("Kuchnia")]
         public int KuchniaId { get; set; }
-        public Kuchnia Kuchnia { get; set; } = null!;
+        public Kuchnia? Kuchnia { get; set; }
 
         [ForeignKey("GrupaPrzepisu")]
         public int GrupaPrzepisuId { get; set; }
-        public GrupaPrzepisu GrupaPrzepisu { get; set; } = null!;
+        public GrupaPrzepisu? GrupaPrzepisu { get; set; }
 
         public ICollection<PrzepisSkladnik> Skladniki { get; set; } = new List<PrzepisSkladnik>();
         public ICollection<Ocena> Oceny { get; set; } = new List<Ocena>();
