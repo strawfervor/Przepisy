@@ -51,9 +51,10 @@ namespace Przepisy.Intranet.Controllers.Przepisy
         // GET: Przepis/Create
         public IActionResult Create()
         {
-            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo");
+            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika");
             ViewData["GrupaPrzepisuId"] = new SelectList(_context.GrupaPrzepisu, "IdGrupyPrzepisu", "Nazwa");
             ViewData["KuchniaId"] = new SelectList(_context.Kuchnia, "IdKuchni", "Nazwa");
+            ViewData["Trudnosc"] = new SelectList(Enum.GetValues(typeof(Trudnosc)).Cast<Trudnosc>());
             return View();
         }
 
@@ -70,7 +71,7 @@ namespace Przepisy.Intranet.Controllers.Przepisy
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", przepis.AutorId);
+            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", przepis.AutorId);
             ViewData["GrupaPrzepisuId"] = new SelectList(_context.GrupaPrzepisu, "IdGrupyPrzepisu", "Nazwa", przepis.GrupaPrzepisuId);
             ViewData["KuchniaId"] = new SelectList(_context.Kuchnia, "IdKuchni", "Nazwa", przepis.KuchniaId);
             return View(przepis);
@@ -89,9 +90,10 @@ namespace Przepisy.Intranet.Controllers.Przepisy
             {
                 return NotFound();
             }
-            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", przepis.AutorId);
+            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", przepis.AutorId);
             ViewData["GrupaPrzepisuId"] = new SelectList(_context.GrupaPrzepisu, "IdGrupyPrzepisu", "Nazwa", przepis.GrupaPrzepisuId);
             ViewData["KuchniaId"] = new SelectList(_context.Kuchnia, "IdKuchni", "Nazwa", przepis.KuchniaId);
+            ViewData["Trudnosc"] = new SelectList(Enum.GetValues(typeof(Trudnosc)).Cast<Trudnosc>(), przepis.Trudnosc);
             return View(przepis);
         }
 
@@ -127,7 +129,7 @@ namespace Przepisy.Intranet.Controllers.Przepisy
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "Haslo", przepis.AutorId);
+            ViewData["AutorId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", przepis.AutorId);
             ViewData["GrupaPrzepisuId"] = new SelectList(_context.GrupaPrzepisu, "IdGrupyPrzepisu", "Nazwa", przepis.GrupaPrzepisuId);
             ViewData["KuchniaId"] = new SelectList(_context.Kuchnia, "IdKuchni", "Nazwa", przepis.KuchniaId);
             return View(przepis);

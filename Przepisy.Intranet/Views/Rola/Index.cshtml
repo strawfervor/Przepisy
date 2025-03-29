@@ -2,14 +2,23 @@
 
 @{
     ViewData["Title"] = "Index";
+    var nazwaWidoku = "Zarządzaj rolami użytkowników";
 }
 
-<h1>Index</h1>
+<div class="w-full">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+    <div class="hero bg-base-200 pb-3 pt-3 w-full">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold mb-3">@nazwaWidoku</h1>
+                <a asp-action="Create" class="btn btn-primary mt-2 mb-3">Utwórz nowy</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overflow-x-auto pb-3 pt-6 w-full">
+        <table class="table table-zebra">
     <thead>
         <tr>
             <th>
@@ -37,11 +46,12 @@
                 @Html.DisplayFor(modelItem => item.CenaAbonamentu)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-sm btn-secondary mb-2" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> <br />
+                            <a class="btn btn-sm btn-warning" asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>
+</div>

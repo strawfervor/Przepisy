@@ -1,82 +1,75 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pl" data-theme="forest">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Przepisy.Intranet</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Przepisy.Intranet.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@@tailwindcss/browser@@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@@5/themes.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Przepisy.Intranet</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+    <div class="drawer md:drawer-open">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
 
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ocena" asp-action="Index">Ocena</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Recenzja" asp-action="Index">Recenzja</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Rola" asp-action="Index">Rola</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UlubionyPrzepis" asp-action="Index">Ulubiony przepis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Uzytkownik" asp-action="Index">Użytkownik</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="GrupaPrzepisu" asp-action="Index">Grupy przepisów</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Kuchnia" asp-action="Index">Kuchnie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Przepis" asp-action="Index">Przepis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PrzepisSkladnik" asp-action="Index">Przpis-składnik</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Skladnik" asp-action="Index">Składniki</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="drawer-content flex flex-col min-h-screen">
+            <!-- hamburger jak mniejsze niz md -->
+            <div class="p-4 md:hidden bg-base-200">
+                <label for="my-drawer" class="btn btn-square btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </label>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+            <!-- głowna pole robocze-->
+            <main class="flex-1 p-6">
+                @RenderBody()
+            </main>
+        </div>
+
+        <!--menu po boku -->
+        <div class="drawer-side bg-base-200">
+            <label for="my-drawer" class="drawer-overlay"></label>
+            <nav class="w-64 bg-base-200 p-4 h-full">
+                <h2 class="text-xl font-bold mt-2 mb-2">Przepisy</h2>
+                <h2 class="text-l font-bold mt-4 mb-2">Menu:</h2>
+                <ul class="menu">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Strona główna</a></li>
+                    <li><a asp-area="" asp-controller="Aktualnosc" asp-action="Index">Edytuj aktualności</a></li>
+                    <li><a asp-area="" asp-controller="Strona" asp-action="Index">Edytuj strony</a></li>
+                    <li><a href="#">Wyloguj</a></li>
+                </ul>
+
+                <h2 class="text-l font-bold mb-2">Zarządzanie przepisami:</h2>
+                <ul class="menu">
+                    <li><a asp-area="" asp-controller="Przepis" asp-action="Index">Przepisy</a></li>
+                    <li><a asp-area="" asp-controller="Skladnik" asp-action="Index">Składniki</a></li>
+                    <li><a asp-area="" asp-controller="Kuchnia" asp-action="Index">Kuchnie</a></li>
+                    <li><a asp-area="" asp-controller="PrzepisSkladnik" asp-action="Index">Przypisane składniki do przepisów</a></li>
+                    <li><a asp-area="" asp-controller="GrupaPrzepisu" asp-action="Index">Grupy przepisów</a></li>
+                </ul>
+
+                <h2 class="text-l font-bold mb-2">Zarządzanie użytkownikami:</h2>
+                <ul class="menu">
+                    <li><a asp-area="" asp-controller="Uzytkownik" asp-action="Index">Użytkownicy</a></li>
+                    <li><a asp-area="" asp-controller="UlubionyPrzepis" asp-action="Index">Ulubione przepisy</a></li>
+                    <li><a asp-area="" asp-controller="Ocena" asp-action="Index">Oceny</a></li>
+                    <li><a asp-area="" asp-controller="Recenzja" asp-action="Index">Recenzje</a></li>
+                    <li><a asp-area="" asp-controller="Rola" asp-action="Index">Role użytkowników</a></li>
+                </ul>
+
+
+                <h2 class="text-l font-bold mt-6 mb-6">Pozostałe:</h2>
+                <ul class="menu">
+                    <li><a href="#">Akceptuj przepisy użytkowników</a></li>
+                    <li><a href="#">Akceptuj składniki użytkowników</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Przepisy.Intranet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,8 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Panel zarządzania";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero bg-base-200 min-h-screen">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Witaj</h1>
+            <p class="pt-6">
+                Dzisiaj jest @DateTime.Now.ToString("dd MMMM yyyy") roku.
+            </p>
+            <p class="pt-2">
+                Wybierz opcje z menu po boku, by przejść do zadania.
+            </p>
+        </div>
+    </div>
 </div>

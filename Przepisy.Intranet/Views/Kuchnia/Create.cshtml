@@ -2,14 +2,22 @@
 
 @{
     ViewData["Title"] = "Create";
+    var nazwaWidoku = "Nowy wpis";
 }
 
-<h1>Create</h1>
+<div class="w-full">
 
-<h4>Kuchnia</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="hero bg-base-200 pb-3 pt-3 w-full">
+        <div class="hero-content text-center">
+            <div class="w-full">
+                <h1 class="text-5xl font-bold mb-3">@nazwaWidoku</h1>
+                <a asp-action="Index" class="btn btn-secondary">Powrót do listy</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap">
+        <div class="w-full">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
