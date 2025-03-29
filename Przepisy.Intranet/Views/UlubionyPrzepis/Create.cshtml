@@ -20,23 +20,23 @@
         <div class="w-full">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UzytkownikId" class="control-label"></label>
-                <select asp-for="UzytkownikId" class ="form-control" asp-items="ViewBag.UzytkownikId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PrzepisId" class="control-label"></label>
-                <select asp-for="PrzepisId" class ="form-control" asp-items="ViewBag.PrzepisId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-control mb-4">
+                    <label asp-for="UzytkownikId" class="control-label"></label>
+                    <select asp-for="UzytkownikId" class="input input-bordered w-full" asp-items="ViewBag.UzytkownikId"></select>
+                    <span asp-validation-for="UzytkownikId" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="PrzepisId" class="control-label"></label>
+                    <select asp-for="PrzepisId" class="input input-bordered w-full" asp-items="ViewBag.PrzepisId"></select>
+                    <span asp-validation-for="PrzepisId" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <input type="submit" value="Zapisz" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
