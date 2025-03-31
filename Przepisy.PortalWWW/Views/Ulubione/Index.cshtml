@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Przepisy.Data.Data.Przepisy.Przepis>
+
+@{
+    ViewData["Title"] = "Moje recenzje";
+}
+
+<h2 class="text-2xl font-bold mb-4">Moje ulubione przepisy:</h2>
+
+@await Html.PartialAsync("_KartaPrzepis", Model)

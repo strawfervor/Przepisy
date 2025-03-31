@@ -24,6 +24,27 @@
     <h2 class="text-2xl font-semibold mt-6 mb-2">Opis wykonania</h2>
     <p>@Model.Przepis.OpisWykonania</p>
 
+    @*Dodaj lub usuń do ulubionych*@
+    @{
+        var ulubione = ViewBag.Ulubione as List<int> ?? new();
+    }
+
+    @if (ulubione.Contains(Model.Przepis.IdPrzepisu))
+    {
+        <form asp-action="UsunUlubiony" asp-controller="Ulubione" method="post">
+            <input type="hidden" name="przepisId" value="@Model.Przepis.IdPrzepisu" />
+            <button type="submit" class="btn btn-error mt-6 mb-2">Usuń z ulubionych</button>
+        </form>
+    }
+    else
+    {
+        <form asp-action="DodajUlubiony" asp-controller="Ulubione" method="post">
+            <input type="hidden" name="przepisId" value="@Model.Przepis.IdPrzepisu" />
+            <button type="submit" class="btn btn-outline mt-6 mb-2">Dodaj do ulubionych</button>
+        </form>
+    }
+    @*Koniec dodaj lub usuń do ublubioncych*@
+
     <h2 class="text-2xl font-semibold mt-6 mb-2">Recenzje</h2>
     @if (Model.Recenzje.Any())
     {

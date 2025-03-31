@@ -50,6 +50,13 @@ namespace Przepisy.PortalWWW.Controllers
                 .Take(pageSize)
                 .ToListAsync();
 
+            int userId = 1; // tymczasowo (docelowo z autoryzacji)
+
+            ViewBag.Ulubione = await _context.UlubionyPrzepis
+                .Where(up => up.UzytkownikId == userId)
+                .Select(up => up.PrzepisId)
+                .ToListAsync();
+
             return View(przepisy);
         }
 
@@ -148,6 +155,7 @@ namespace Przepisy.PortalWWW.Controllers
         //
         public async Task<IActionResult> Details(int id)
         {
+            int userId = 1; // tymczasowo (docelowo z autoryzacji)
             var przepis = await _context.Przepis
                 .Include(p => p.Kuchnia)
                 .Include(p => p.GrupaPrzepisu)
@@ -167,7 +175,11 @@ namespace Przepisy.PortalWWW.Controllers
                 .OrderByDescending(r => r.DataDodania)
                 .ToListAsync();
 
-            int userId = 1; // zastąp na ID aktualnie zalogowanego użytkownika
+            ViewBag.Ulubione = await _context.UlubionyPrzepis
+                .Where(up => up.UzytkownikId == userId)
+                .Select(up => up.PrzepisId)
+                .ToListAsync();
+
             bool juzOcenione = await _context.Ocena.AnyAsync(o => o.PrzepisId == id && o.UzytkownikId == userId);
 
             var model = new PrzepisDetailsViewModel
@@ -189,7 +201,7 @@ namespace Przepisy.PortalWWW.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DodajOcene(int PrzepisId, int Wartosc, string Tresc)
         {
-            int userId = 1; // ← tu dynamiczne ID usera
+            int userId = 1; // id usera na razie statuczne
 
             if (await _context.Ocena.AnyAsync(o => o.PrzepisId == PrzepisId && o.UzytkownikId == userId))
                 return RedirectToAction("Details", new { id = PrzepisId });

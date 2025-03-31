@@ -14,7 +14,7 @@
         <header>
             <div class="navbar bg-base-100 shadow-sm">
                 <div class="flex-1">
-                    <a class="btn btn-ghost text-xl">Przepisy</a>
+                <a class="btn btn-ghost text-xl" asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="1">Przepisy</a>
                 </div>
 
                 <!-- menu przeglądarkowe -->
@@ -28,7 +28,7 @@
                                 <summary>Użytkownik</summary>
                                 <ul class="bg-base-100 rounded-t-none p-2">
                                     <li><a>Mój profil</a></li>
-                                    <li><a>Ulubione przepisy</a></li>
+                                    <li><a asp-controller="Ulubione" asp-action="Index">Ulubione przepisy</a></li>
                                     <li><a asp-controller="Recenzje" asp-action="Index">Recenzje</a></li>
                                     <li><a>Wyloguj</a></li>
                                 </ul>
@@ -50,8 +50,8 @@
                             <li><a asp-controller="Przepisy" asp-action="Index">Przepisy</a></li>
                             <li><a asp-controller="Przepisy" asp-action="Create">Dodaj przepis</a></li>
                             <li class="border-t mt-2 pt-2"><a>Mój profil</a></li>
-                            <li><a>Ulubione przepisy</a></li>
-                            <li><a>Recenzje</a></li>
+                            <li><a asp-controller="Ulubione" asp-action="Index">Ulubione przepisy</a></li>
+                            <li><a asp-controller="Recenzje" asp-action="Index">Recenzje</a></li>
                             <li><a>Wyloguj</a></li>
                         </ul>
                     </div>
