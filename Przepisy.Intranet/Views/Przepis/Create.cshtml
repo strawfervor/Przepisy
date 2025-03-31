@@ -18,8 +18,8 @@
 
     <div class="flex flex-wrap">
         <div class="w-full">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-control mb-4">
                     <label asp-for="Tytul" class="control-label"></label>
                     <input asp-for="Tytul" class="input input-bordered w-full" />
@@ -82,5 +82,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

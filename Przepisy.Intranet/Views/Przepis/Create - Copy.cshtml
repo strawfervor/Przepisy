@@ -2,74 +2,87 @@
 
 @{
     ViewData["Title"] = "Create";
+    var nazwaWidoku = "Nowy wpis";
 }
 
-<h1>Create</h1>
+<div class="w-full">
 
-<h4>Przepis</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Tytul" class="control-label"></label>
-                <input asp-for="Tytul" class="form-control" />
-                <span asp-validation-for="Tytul" class="text-danger"></span>
+    <div class="hero bg-base-200 pb-3 pt-3 w-full">
+        <div class="hero-content text-center">
+            <div class="w-full">
+                <h1 class="text-5xl font-bold mb-3">@nazwaWidoku</h1>
+                <a asp-action="Index" class="btn btn-secondary">Powrót do listy</a>
             </div>
-            <div class="form-group">
-                <label asp-for="KrotkiOpis" class="control-label"></label>
-                <input asp-for="KrotkiOpis" class="form-control" />
-                <span asp-validation-for="KrotkiOpis" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OpisWykonania" class="control-label"></label>
-                <input asp-for="OpisWykonania" class="form-control" />
-                <span asp-validation-for="OpisWykonania" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trudnosc" class="control-label"></label>
-                <select asp-for="Trudnosc" class="form-control"></select>
-                <span asp-validation-for="Trudnosc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UrlZdjecia" class="control-label"></label>
-                <input asp-for="UrlZdjecia" class="form-control" />
-                <span asp-validation-for="UrlZdjecia" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="CzyAktywny" /> @Html.DisplayNameFor(model => model.CzyAktywny)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="SredniaOcena" class="control-label"></label>
-                <input asp-for="SredniaOcena" class="form-control" />
-                <span asp-validation-for="SredniaOcena" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AutorId" class="control-label"></label>
-                <select asp-for="AutorId" class ="form-control" asp-items="ViewBag.AutorId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="KuchniaId" class="control-label"></label>
-                <select asp-for="KuchniaId" class ="form-control" asp-items="ViewBag.KuchniaId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="GrupaPrzepisuId" class="control-label"></label>
-                <select asp-for="GrupaPrzepisuId" class ="form-control" asp-items="ViewBag.GrupaPrzepisuId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="flex flex-wrap">
+        <div class="w-full">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-control mb-4">
+                    <label asp-for="Tytul" class="control-label"></label>
+                    <input asp-for="Tytul" class="input input-bordered w-full" />
+                    <span asp-validation-for="Tytul" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="KrotkiOpis" class="control-label"></label>
+                    <textarea asp-for="KrotkiOpis" class="input textarea w-full"></textarea>
+                    <span asp-validation-for="KrotkiOpis" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="OpisWykonania" class="control-label"></label>
+                    <textarea asp-for="OpisWykonania" class="input textarea w-full"></textarea>
+                    <span asp-validation-for="OpisWykonania" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="Trudnosc" class="label">
+                        <span class="label-text">Trudność</span>
+                    </label>
+                    <select asp-for="Trudnosc" asp-items="ViewBag.Trudnosc" class="select select-bordered w-full"></select>
+                    <span asp-validation-for="Trudnosc" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="UrlZdjecia" class="control-label"></label>
+                    <input asp-for="UrlZdjecia" class="input input-bordered w-full" />
+                    <span asp-validation-for="UrlZdjecia" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4 form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="CzyAktywny" /> @Html.DisplayNameFor(model => model.CzyAktywny)
+                    </label>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="SredniaOcena" class="control-label"></label>
+                    <input asp-for="SredniaOcena" class="input input-bordered w-full" />
+                    <span asp-validation-for="SredniaOcena" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="AutorId" class="control-label"></label>
+                    <select asp-for="AutorId" class="input input-bordered w-full" asp-items="ViewBag.AutorId"></select>
+                    <span asp-validation-for="AutorId" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="KuchniaId" class="control-label"></label>
+                    <select asp-for="KuchniaId" class="input input-bordered w-full" asp-items="ViewBag.KuchniaId"></select>
+                    <span asp-validation-for="KuchniaId" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <label asp-for="GrupaPrzepisuId" class="control-label"></label>
+                    <select asp-for="GrupaPrzepisuId" class="input input-bordered w-full" asp-items="ViewBag.GrupaPrzepisuId"></select>
+                    <span asp-validation-for="GrupaPrzepisuId" class="text-error text-sm mt-1"></span>
+                </div>
+                <div class="form-control mb-4">
+                    <input type="submit" value="Zapisz" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

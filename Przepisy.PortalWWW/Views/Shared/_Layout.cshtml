@@ -20,8 +20,9 @@
                 <!-- menu przeglądarkowe -->
                 <div class="flex-none hidden lg:block">
                     <ul class="menu menu-horizontal px-1">
-                        @await Html.PartialAsync("Odnosniki", (IEnumerable<Przepisy.Data.Data.CMS.Strona>)ViewBag.ModelStrony)
+                        @await Html.PartialAsync("Odnosniki")
                         <li><a asp-controller="Przepisy" asp-action="Index">Przepisy</a></li>
+                        <li><a asp-controller="Przepisy" asp-action="Create">Dodaj przepis</a></li>
                         <li>
                             <details>
                                 <summary>Użytkownik</summary>
@@ -45,8 +46,9 @@
                             </svg>
                         </label>
                         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            @await Html.PartialAsync("Odnosniki", (IEnumerable<Przepisy.Data.Data.CMS.Strona>)ViewBag.ModelStrony)
+                            @await Html.PartialAsync("Odnosniki")
                             <li><a asp-controller="Przepisy" asp-action="Index">Przepisy</a></li>
+                            <li><a asp-controller="Przepisy" asp-action="Create">Dodaj przepis</a></li>
                             <li class="border-t mt-2 pt-2"><a>Mój profil</a></li>
                             <li><a>Ulubione przepisy</a></li>
                             <li><a>Recenzje</a></li>

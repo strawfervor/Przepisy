@@ -1,0 +1,101 @@
+﻿@model Przepisy.PortalWWW.Models.PrzepisCreateViewModel
+@using Przepisy.Data.Data.Przepisy
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-3xl mx-auto p-6 bg-base-200 rounded-xl shadow">
+    <h2 class="text-3xl font-bold mb-6 text-center">Dodaj nowy przepis</h2>
+
+    @*Debug dla wyświetlania co poszło nie tak przy walidacji, usunąć na "produkcje"*@
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-error mb-4">
+            <strong>Błędy:</strong>
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form asp-action="Create" enctype="multipart/form-data" method="post">
+        <div class="form-control mb-4">
+            <label class="label" asp-for="Tytul"><span class="label-text">Tytuł</span></label>
+            <input asp-for="Tytul" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control mb-4">
+            <label class="label" asp-for="KrotkiOpis"><span class="label-text">Krótki opis</span></label>
+            <textarea asp-for="KrotkiOpis" class="textarea textarea-bordered w-full" required></textarea>
+        </div>
+
+        <div class="form-control mb-4">
+            <label class="label" asp-for="OpisWykonania"><span class="label-text">Opis wykonania</span></label>
+            <textarea asp-for="OpisWykonania" class="textarea textarea-bordered w-full" required></textarea>
+        </div>
+
+        <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Zdjęcie przepisu</span></label>
+            <input type="file" name="zdjecie" accept="image/*" class="file-input file-input-bordered w-full" />
+        </div>
+
+        <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Kuchnia</span></label>
+            <select asp-for="KuchniaId" asp-items="ViewBag.Kuchnie" class="select select-bordered w-full"></select>
+        </div>
+
+        <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Rodzaj posiłku</span></label>
+            <select asp-for="GrupaPrzepisuId" asp-items="ViewBag.Grupy" class="select select-bordered w-full"></select>
+        </div>
+
+        <div class="form-control mb-4">
+            <label class="label"><span class="label-text">Trudność</span></label>
+            <select asp-for="Trudnosc" asp-items="new SelectList(ViewBag.Trudnosci)" class="select select-bordered w-full"></select>
+        </div>
+
+        <!-- Składniki -->
+        <h3 class="text-xl font-semibold mt-6 mb-2">Składniki</h3>
+        <div id="skladnikiContainer" class="mb-4 flex flex-col gap-4"></div>
+        <button type="button" class="btn btn-outline btn-sm mb-6" onclick="dodajSkladnik()">➕ Dodaj składnik</button>
+
+        <div class="form-control">
+            <button type="submit" class="btn btn-primary">Zapisz przepis</button>
+        </div>
+    </form>
+</div>
+
+<!-- Template składnika -->
+<template id="templateSkladnika">
+    <div class="flex gap-2 items-end" data-skladnik>
+        <select name="Skladniki[{{index}}].SkladnikId" class="select select-bordered w-1/2" required>
+            <option value="">-- wybierz składnik --</option>
+            @foreach (var s in (List<Skladnik>)ViewBag.Skladniki)
+            {
+                <option value="@s.IdSkladnika">@s.Nazwa</option>
+            }
+        </select>
+        <input name="Skladniki[{{index}}].IloscGram" type="number" min="1" class="input input-bordered w-1/4" placeholder="gramy" required />
+        <button type="button" class="btn btn-error btn-sm" onclick="this.closest('[data-skladnik]').remove()">✖</button>
+    </div>
+</template>
+
+@section Scripts {
+    <script>
+        let indexSkladnika = 0;
+
+        function dodajSkladnik() {
+            const tmpl = document.getElementById("templateSkladnika").innerHTML;
+            const html = tmpl.replaceAll("{{index}}", indexSkladnika);
+            document.getElementById("skladnikiContainer").insertAdjacentHTML("beforeend", html);
+            indexSkladnika++;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => dodajSkladnik());
+    </script>
+}

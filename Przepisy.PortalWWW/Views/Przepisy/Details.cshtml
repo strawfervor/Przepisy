@@ -1,0 +1,65 @@
+﻿@model Przepisy.PortalWWW.Models.PrzepisDetailsViewModel
+@{
+    ViewData["Title"] = Model.Przepis.Tytul;
+}
+
+<div class="max-w-4xl mx-auto p-6 bg-base-200 rounded-xl shadow">
+    <h1 class="text-4xl font-bold mb-4">@Model.Przepis.Tytul</h1>
+
+    <img src="@Model.Przepis.UrlZdjecia" alt="@Model.Przepis.Tytul" class="w-full h-64 object-cover mb-6 rounded-lg" />
+
+    <p class="text-lg mb-2"><strong>Kuchnia:</strong> @Model.Przepis.Kuchnia?.Nazwa</p>
+    <p class="text-lg mb-2"><strong>Rodzaj posiłku:</strong> @Model.Przepis.GrupaPrzepisu?.Nazwa</p>
+    <p class="text-lg mb-2"><strong>Trudność:</strong> @Model.Przepis.Trudnosc</p>
+    <p class="text-lg mb-2"><strong>Średnia ocena:</strong> @Model.Przepis.SredniaOcena.ToString("0.0")</p>
+
+    <h2 class="text-2xl font-semibold mt-6 mb-2">Składniki</h2>
+    <ul class="list-disc list-inside">
+        @foreach (var s in Model.Skladniki)
+        {
+            <li>@s.Skladnik.Nazwa - @s.IloscGram g</li>
+        }
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-6 mb-2">Opis wykonania</h2>
+    <p>@Model.Przepis.OpisWykonania</p>
+
+    <h2 class="text-2xl font-semibold mt-6 mb-2">Recenzje</h2>
+    @if (Model.Recenzje.Any())
+    {
+        @foreach (var r in Model.Recenzje)
+        {
+            <div class="mb-4 p-4 bg-base-100 rounded shadow">
+                <p class="text-sm text-gray-500">Dodane przez @r.Uzytkownik?.NazwaUzytkownika, @r.DataDodania.ToShortDateString()</p>
+                <p>@r.Tresc</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Brak recenzji.</p>
+    }
+
+    @if (!Model.JuzOcenione)
+    {
+        <form asp-action="DodajOcene" method="post" class="mt-8">
+            <input type="hidden" name="PrzepisId" value="@Model.Przepis.IdPrzepisu" />
+
+            <div class="form-control mb-4">
+                <label class="label"><span class="label-text">Twoja ocena (1–5):</span></label>
+                <input type="number" name="Wartosc" min="1" max="5" class="input input-bordered w-full" required />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label"><span class="label-text">Twoja recenzja:</span></label>
+                <textarea name="Tresc" class="textarea textarea-bordered w-full" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Wyślij opinię</button>
+        </form>
+    }
+    else
+    {
+        <p class="mt-6 text-success">Dziękujemy, już oceniłeś ten przepis!</p>
+    }
+</div>

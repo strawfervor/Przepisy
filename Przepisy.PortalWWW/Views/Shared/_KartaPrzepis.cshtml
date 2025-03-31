@@ -11,7 +11,7 @@
                 <h2 class="card-title">@item.Tytul</h2>
                 <p class="text-sm">@item.KrotkiOpis</p>
                 <div class="card-actions justify-end">
-                    <a href="@Url.Action("Details", "Przepisy", new { id = item.IdPrzepisu })" class="btn btn-primary btn-sm">Pokaż</a>
+                    <a asp-controller="Przepisy" asp-action="Details" asp-route-id="@item.IdPrzepisu" class="btn btn-primary">Pokaż</a>
                 </div>
             </div>
         </div>

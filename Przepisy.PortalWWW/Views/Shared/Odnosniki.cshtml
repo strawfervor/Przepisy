@@ -1,6 +1,12 @@
-﻿@model IEnumerable<Przepisy.Data.Data.CMS.Strona>
+﻿@using Przepisy.Data.Data
+@using Przepisy.Data.Data.CMS
+@inject PrzepisyContext _context
 
-@foreach(var item in Model)
+@{
+    var strony = _context.Strona.OrderBy(s => s.Pozycja).ToList();
+}
+
+@foreach (var item in strony)
 {
     <li><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="@item.IdStrony">@item.LinkTytul</a></li>
 }

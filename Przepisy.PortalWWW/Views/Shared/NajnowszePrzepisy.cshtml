@@ -12,7 +12,7 @@
                 <h2 class="card-title">@item.Tytul</h2>
                 <p>@item.KrotkiOpis </p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Pokaż</button>
+                    <a asp-controller="Przepisy" asp-action="Details" asp-route-id="@item.IdPrzepisu" class="btn btn-primary">Pokaż</a>
                 </div>
             </div>
         </div>
