@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Przepisy.Data.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<PrzepisyContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PrzepisyContext") ?? throw new InvalidOperationException("Connection string 'PrzepisyContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

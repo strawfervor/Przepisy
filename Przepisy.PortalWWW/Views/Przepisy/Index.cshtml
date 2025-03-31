@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Przepisy.Data.Data.Przepisy.Przepis>
+
+@{
+    ViewData["Title"] = "Przeglądaj przepisy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="get" class="mb-6 flex flex-wrap gap-4 items-end">
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Rodzaj kuchni</span>
+        </label>
+        <select name="kuchniaId" class="select select-bordered">
+            <option value="">Wszystkie</option>
+            @foreach (var kuchnia in ViewBag.ModelRodzaje)
+            {
+                <option value="@kuchnia.IdKuchni">@kuchnia.Nazwa</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Rodzaj posiłku</span>
+        </label>
+        <select name="grupaId" class="select select-bordered">
+            <option value="">Wszystkie</option>
+            @foreach (var grupa in ViewBag.ModelGrupy)
+            {
+                <option value="@grupa.IdGrupyPrzepisu">@grupa.Nazwa</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Filtruj</button>
+</form>
+
+
+@await Html.PartialAsync("_KartaPrzepis", Model)
+
+
+
+<!-- paginacja -->
+<div class="w-full mt-10 pt-6 flex justify-center">
+        @{
+            int currentPage = ViewBag.CurrentPage;
+            int totalPages = ViewBag.TotalPages;
+            var selectedKuchnia = ViewBag.SelectedKuchnia;
+            var selectedGrupa = ViewBag.SelectedGrupa;
+        }
+
+        <div class="join mt-8 justify-center flex flex-wrap gap-2">
+
+            <!-- poprzednia strona -->
+            <a href="@Url.Action("Index", new { page = currentPage - 1, kuchniaId = selectedKuchnia, grupaId = selectedGrupa })"
+               class="join-item btn btn-outline @(currentPage == 1 ? "btn-disabled" : "")">
+                Poprzednia strona
+            </a>
+
+            <!-- numery stron -->
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <a href="@Url.Action("Index", new { page = i, kuchniaId = selectedKuchnia, grupaId = selectedGrupa })"
+                   class="join-item btn @(currentPage == i ? "btn-active btn-primary" : "btn-outline")">
+                    @i
+                </a>
+            }
+
+            <!-- nastpena strona -->
+            <a href="@Url.Action("Index", new { page = currentPage + 1, kuchniaId = selectedKuchnia, grupaId = selectedGrupa })"
+               class="join-item btn btn-outline @(currentPage == totalPages ? "btn-disabled" : "")">
+                Następna strona
+            </a>
+        </div>
+</div>

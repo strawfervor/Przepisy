@@ -1,21 +1,29 @@
-﻿@model Przepisy.Data.Data.Przepisy.Przepis
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Przepisy.Data.Data.Przepisy.Przepis>
 
-
-<div class="card bg-base-100 w-96 shadow-sm">
-    <figure>
-        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-             alt="Shoes" />
-    </figure>
-    <div class="card-body">
-        <h2 class="card-title">Card Title</h2>
-        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-        <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+<div class="grid gap-6 mt-4 mb-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    @foreach (var item in Model)
+    {
+        <div class="card bg-base-100 shadow-md">
+            <figure class="h-48 overflow-hidden">
+                <img src="@item.UrlZdjecia" class="object-cover w-full h-full" />
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title">@item.Tytul</h2>
+                <p class="text-sm">@item.KrotkiOpis</p>
+                <div class="card-actions justify-end">
+                    <a href="@Url.Action("Details", "Przepisy", new { id = item.IdPrzepisu })" class="btn btn-primary btn-sm">Pokaż</a>
+                </div>
+            </div>
         </div>
-    </div>
+    }
 </div>
+
+
+
+@* W dowolnym .cshtml, np. Index.cshtml, wrzucasz:
+
+@await Html.PartialAsync("_KartaPrzepis", Model)
+
+lub jeśli przekazujesz inną listę:
+
+@await Html.PartialAsync("_KartaPrzepis", ViewBag.NajnowszePrzepisy) *@

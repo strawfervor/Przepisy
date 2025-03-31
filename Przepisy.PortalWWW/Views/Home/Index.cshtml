@@ -1,14 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Strona główna";
+﻿@model Przepisy.Data.Data.CMS.Strona
+@{
+    ViewData["Title"] = Model.LinkTytul;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="hero bg-base-200 py-10 rounded-lg">
     <div class="hero-content text-center">
         <div class="max-w-2xl">
-            <h1 class="text-5xl font-bold mb-4">Witaj!</h1>
+            <h1 class="text-5xl font-bold mb-4">@Model.Tytul</h1>
             <p class="text-lg text-gray-500">
-                Szukasz inspiracji na szybki obiad, domowy deser albo efektowną kolację? U nas znajdziesz setki starannie opisanych przepisów z różnych kuchni świata – od klasyki po nowoczesne dania. Każdy przepis zawiera dokładny opis wykonania, składniki z podaną kalorycznością oraz poziom trudności, dzięki czemu możesz łatwo dopasować go do swoich umiejętności i czasu.
-                Niezależnie od tego, czy gotujesz codziennie, czy tylko od święta – nasze przepisy pomogą Ci stworzyć coś naprawdę smacznego i wyjątkowego.
+                @Model.Tresc
             </p>
         </div>
     </div>
@@ -16,43 +17,4 @@
 
 <h1 class="text-3xl font-bold mt-4 mb-4">Najnowsze przepisy: </h1>
 
-<div class="flex justify-between">
-    <div class="card bg-base-100 w-96 shadow-sm">
-        <figure>
-            <img src="~/images/przepisy/barszcz.png" />
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title">Barszcz</h2>
-            <p> potrawa kuchni warmiańskiej z domieszką choroszczańskiej (bo spożywa się ją na zimno, a na pewno nie na ciepło), tradycyjnie podawana w psiej misce. </p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary">Pokaż</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card bg-base-100 w-96 shadow-sm">
-        <figure>
-            <img src="~/images/przepisy/kabab_kapusniaku.png" />
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title">Kabab</h2>
-            <p>Kabab w kapuśniaku – tradycyjna, niebanalna potrawa bombaska, składająca się z zupy kapuśniak, kababa i kiełbaski bożej. Sam Adalbert Struzzo twierdził, że całe danie jest bardzo dobre, trochę takie pikowante i lepsze, niż nie wiadomo co. Jedzenie to łączy w sobie kuchnię turecką oraz polską.</p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary">Pokaż</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card bg-base-100 w-96 shadow-sm">
-        <figure>
-            <img src="~/images/przepisy/bigos_z_mandarynkami.jpg" />
-        </figure>
-        <div class="card-body">
-            <h2 class="card-title">Bigos</h2>
-            <p>tradycyjna dla kuchni bombaskiej i regionu Suchodolszczyzny potrawa z kapusty oraz mięsa, tuszona z dodatkiem mandarynek i bananów, czasami także rodzynek.</p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary">Pokaż</button>
-            </div>
-        </div>
-    </div>
-</div>
+@await Html.PartialAsync("NajnowszePrzepisy", (IEnumerable<Przepisy.Data.Data.Przepisy.Przepis>)ViewBag.ModelPrzepisy)
