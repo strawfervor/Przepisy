@@ -14,8 +14,10 @@
 
 @model IEnumerable<Przepisy.Data.Data.CMS.Strona>
 
-
-@foreach (var item in Model ?? Enumerable.Empty<Przepisy.Data.Data.CMS.Strona>())
+@if (Model != null)
 {
-    <li><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="@item.IdStrony">@item.LinkTytul</a></li>
+    @foreach (var item in Model ?? Enumerable.Empty<Przepisy.Data.Data.CMS.Strona>())
+    {
+        <li><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="@item.IdStrony">@item.LinkTytul</a></li>
+    }
 }

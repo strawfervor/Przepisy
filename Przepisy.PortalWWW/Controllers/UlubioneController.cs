@@ -18,6 +18,11 @@ namespace Przepisy.PortalWWW.Controllers
         {
             int userId = 1; //user do zmiany potem, jak już będzie logowanie (jeśli xD)
 
+            ViewBag.ModelStrony = await _context.Strona
+                .Where(s => s.Pozycja > 0)
+                .OrderBy(s => s.Pozycja)
+                .ToListAsync();
+
             var ulubionePrzepisy = await _context.UlubionyPrzepis
                 .Where(up => up.UzytkownikId == userId)
                 .Include(up => up.Przepis)

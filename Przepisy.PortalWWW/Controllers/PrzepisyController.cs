@@ -26,6 +26,10 @@ namespace Przepisy.PortalWWW.Controllers
             ViewBag.ModelStrony = await _context.Strona.OrderBy(s => s.Pozycja).ToListAsync();
             ViewBag.ModelRodzaje = await _context.Kuchnia.ToListAsync();
             ViewBag.ModelGrupy = await _context.GrupaPrzepisu.ToListAsync();
+            ViewBag.ModelStrony = await _context.Strona
+                .Where(s => s.Pozycja > 0)
+                .OrderBy(s => s.Pozycja)
+                .ToListAsync();
 
             var przepisyQuery = _context.Przepis
                 .Include(p => p.Kuchnia)
@@ -70,6 +74,12 @@ namespace Przepisy.PortalWWW.Controllers
             ViewBag.Kuchnie = new SelectList(await _context.Kuchnia.ToListAsync(), "IdKuchni", "Nazwa");
             ViewBag.Grupy = new SelectList(await _context.GrupaPrzepisu.ToListAsync(), "IdGrupyPrzepisu", "Nazwa");
             ViewBag.Trudnosci = Enum.GetNames(typeof(Trudnosc));
+
+            ViewBag.ModelStrony = await _context.Strona
+                .Where(s => s.Pozycja > 0)
+                .OrderBy(s => s.Pozycja)
+                .ToListAsync();
+
             ViewBag.Skladniki = await _context.Skladnik
                 .Where(s => s.CzyAktywny)
                 .OrderBy(s => s.Nazwa)
@@ -87,6 +97,12 @@ namespace Przepisy.PortalWWW.Controllers
                 ViewBag.Kuchnie = new SelectList(await _context.Kuchnia.ToListAsync(), "IdKuchni", "Nazwa");
                 ViewBag.Grupy = new SelectList(await _context.GrupaPrzepisu.ToListAsync(), "IdGrupyPrzepisu", "Nazwa");
                 ViewBag.Trudnosci = Enum.GetNames(typeof(Trudnosc));
+
+                ViewBag.ModelStrony = await _context.Strona
+                    .Where(s => s.Pozycja > 0)
+                    .OrderBy(s => s.Pozycja)
+                    .ToListAsync();
+
                 ViewBag.Skladniki = await _context.Skladnik
                     .Where(s => s.CzyAktywny)
                     .OrderBy(s => s.Nazwa)

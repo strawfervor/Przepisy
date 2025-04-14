@@ -16,6 +16,10 @@ namespace Przepisy.PortalWWW.Controllers
         public async Task<IActionResult> Index()
         {
             int userId = 1;
+            ViewBag.ModelStrony = await _context.Strona
+                .Where(s => s.Pozycja > 0)
+                .OrderBy(s => s.Pozycja)
+                .ToListAsync();
 
             var recenzje = await _context.Recenzja
                 .Include(r => r.Przepis)
