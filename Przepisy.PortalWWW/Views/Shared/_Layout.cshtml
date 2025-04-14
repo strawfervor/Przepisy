@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Przepisy.Data.Data.CMS
+<!DOCTYPE html>
 <html lang="pl" data-theme="caramellatte">
 <head>
     <meta charset="utf-8" />
@@ -20,7 +21,7 @@
                 <!-- menu przeglądarkowe -->
                 <div class="flex-none hidden lg:block">
                     <ul class="menu menu-horizontal px-1">
-                        @await Html.PartialAsync("Odnosniki")
+                        @await Html.PartialAsync("Odnosniki", ViewBag.ModelStrony as IEnumerable<Strona>)
                         <li><a asp-controller="Przepisy" asp-action="Index">Przepisy</a></li>
                         <li><a asp-controller="Przepisy" asp-action="Create">Dodaj przepis</a></li>
                         <li>
@@ -46,7 +47,7 @@
                             </svg>
                         </label>
                         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            @await Html.PartialAsync("Odnosniki")
+                            @await Html.PartialAsync("Odnosniki", ViewBag.ModelStrony as IEnumerable<Strona>)
                             <li><a asp-controller="Przepisy" asp-action="Index">Przepisy</a></li>
                             <li><a asp-controller="Przepisy" asp-action="Create">Dodaj przepis</a></li>
                             <li class="border-t mt-2 pt-2"><a>Mój profil</a></li>
@@ -65,7 +66,16 @@
 
         <footer class="footer footer-center bg-base-300 text-base-content p-4">
             <aside>
-                <p>Copyright © @DateTime.Now.Year - Przepisy</p>
+                @if (ViewBag.Stopka != null)
+                {
+                    <div>
+                        <p>@ViewBag.Stopka.Tresc</p>
+                    </div>
+                }
+                else
+                {
+                    <p>© @DateTime.Now.Year - Przepisy</p>
+                }
             </aside>
         </footer>
     @await RenderSectionAsync("Scripts", required: false)

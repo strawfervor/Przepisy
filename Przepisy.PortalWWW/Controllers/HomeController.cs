@@ -19,24 +19,48 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public async Task <IActionResult> Index(int? id)
-    {
-        ViewBag.ModelPrzepisy = await _context.Przepis.Where(t => t.CzyAktywny == true).OrderByDescending(p => p.IdPrzepisu).Take(3).ToListAsync();
-        ViewBag.ModelStrony = (
-            from strona in _context.Strona //dla ka¿dej strony z bazy danych kontektst stron
-            orderby strona.Pozycja //posortowanej wzglêdem pozycji
-            select strona //pobieramy strone
-            ).ToList(); //zamieniamy na listê
+    //public async Task <IActionResult> Index(int? id)
+    //{
+    //    ViewBag.ModelPrzepisy = await _context.Przepis.Where(t => t.CzyAktywny == true).OrderByDescending(p => p.IdPrzepisu).Take(3).ToListAsync();
+    //    ViewBag.ModelStrony = (
+    //        from strona in _context.Strona //dla ka¿dej strony z bazy danych kontektst stron
+    //        orderby strona.Pozycja //posortowanej wzglêdem pozycji
+    //        select strona //pobieramy strone
+    //        ).ToList(); //zamieniamy na listê
 
-        //przechwytujemy id, jeœli go nie ma to wtedy dajemy 1 jako id, nastêpnie szukamy itemu danym id i zwaracamy je jako view
+    //    //przechwytujemy id, jeœli go nie ma to wtedy dajemy 1 jako id, nastêpnie szukamy itemu danym id i zwaracamy je jako view
+    //    if (id == null)
+    //    {
+    //        id = 1;
+    //    }
+
+    //    var item = await _context.Strona.FindAsync(id);
+
+
+    //    return View(item);
+    //}
+
+    public async Task<IActionResult> Index(int? id)
+    {
+        ViewBag.ModelPrzepisy = await _context.Przepis
+            .Where(t => t.CzyAktywny)
+            .OrderByDescending(p => p.IdPrzepisu)
+            .Take(3)
+            .ToListAsync();
+
+        ViewBag.ModelStrony = await _context.Strona
+            .Where(s => s.Pozycja > 0)
+            .OrderBy(s => s.Pozycja)
+            .ToListAsync();
+
+        //strona z pozycj¹ zero to stopka
+        ViewBag.Stopka = await _context.Strona
+            .FirstOrDefaultAsync(s => s.Pozycja == 0);
+
         if (id == null)
-        {
             id = 1;
-        }
 
         var item = await _context.Strona.FindAsync(id);
-
-
         return View(item);
     }
 
