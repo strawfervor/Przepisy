@@ -49,7 +49,7 @@ namespace Przepisy.Intranet.Controllers.Przepisy
         // GET: PrzepisSkladnik/Create
         public IActionResult Create()
         {
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania");
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul");
             ViewData["SkladnikId"] = new SelectList(_context.Set<Skladnik>(), "IdSkladnika", "Nazwa");
             return View();
         }
@@ -67,7 +67,7 @@ namespace Przepisy.Intranet.Controllers.Przepisy
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", przepisSkladnik.PrzepisId);
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul", przepisSkladnik.PrzepisId);
             ViewData["SkladnikId"] = new SelectList(_context.Set<Skladnik>(), "IdSkladnika", "Nazwa", przepisSkladnik.SkladnikId);
             return View(przepisSkladnik);
         }
@@ -85,7 +85,7 @@ namespace Przepisy.Intranet.Controllers.Przepisy
             {
                 return NotFound();
             }
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", przepisSkladnik.PrzepisId);
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul", przepisSkladnik.PrzepisId);
             ViewData["SkladnikId"] = new SelectList(_context.Set<Skladnik>(), "IdSkladnika", "Nazwa", przepisSkladnik.SkladnikId);
             return View(przepisSkladnik);
         }
@@ -122,7 +122,7 @@ namespace Przepisy.Intranet.Controllers.Przepisy
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", przepisSkladnik.PrzepisId);
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul", przepisSkladnik.PrzepisId);
             ViewData["SkladnikId"] = new SelectList(_context.Set<Skladnik>(), "IdSkladnika", "Nazwa", przepisSkladnik.SkladnikId);
             return View(przepisSkladnik);
         }

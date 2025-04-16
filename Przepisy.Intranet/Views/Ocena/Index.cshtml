@@ -40,10 +40,10 @@
                 @Html.DisplayFor(modelItem => item.Wartosc)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Uzytkownik.Haslo)
+                @Html.DisplayFor(modelItem => item.Uzytkownik.NazwaUzytkownika)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Przepis.OpisWykonania)
+                @Html.DisplayFor(modelItem => item.Przepis.Tytul)
             </td>
             <td>
                             <a class="btn btn-sm btn-secondary mb-2" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> <br />

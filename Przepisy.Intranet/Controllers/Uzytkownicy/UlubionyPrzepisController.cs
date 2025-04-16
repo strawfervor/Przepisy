@@ -49,7 +49,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
         // GET: UlubionyPrzepis/Create
         public IActionResult Create()
         {
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania");
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul");
             ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika");
             return View();
         }
@@ -67,7 +67,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", ulubionyPrzepis.PrzepisId);
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul", ulubionyPrzepis.PrzepisId);
             ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", ulubionyPrzepis.UzytkownikId);
             return View(ulubionyPrzepis);
         }
@@ -85,7 +85,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
             {
                 return NotFound();
             }
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", ulubionyPrzepis.PrzepisId);
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul", ulubionyPrzepis.PrzepisId);
             ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", ulubionyPrzepis.UzytkownikId);
             return View(ulubionyPrzepis);
         }
@@ -122,7 +122,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania", ulubionyPrzepis.PrzepisId);
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul", ulubionyPrzepis.PrzepisId);
             ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika", ulubionyPrzepis.UzytkownikId);
             return View(ulubionyPrzepis);
         }

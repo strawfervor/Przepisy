@@ -175,5 +175,33 @@ namespace Przepisy.Intranet.Controllers.Przepisy
         {
             return _context.Przepis.Any(e => e.IdPrzepisu == id);
         }
+
+
+        //akceptowanei przepisów, viewbag z przepisami nei aktywnymi
+        public async Task<IActionResult> AkceptujPrzepis()
+        {
+            var przepisy = await _context.Przepis
+                .Include(p => p.Autor)
+                .Include(p => p.GrupaPrzepisu)
+                .Include(p => p.Kuchnia)
+                .Where(p => !p.CzyAktywny)
+                .ToListAsync();
+
+            return View("AkceptujPrzepis", przepisy);
+        }
+
+        //akcettowanie przypisu
+        [HttpPost]
+        public async Task<IActionResult> Akceptuj(int id)
+        {
+            var przepis = await _context.Przepis.FindAsync(id);
+            if (przepis == null)
+                return NotFound();
+
+            przepis.CzyAktywny = true;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("AkceptujPrzepis");
+        }
     }
 }

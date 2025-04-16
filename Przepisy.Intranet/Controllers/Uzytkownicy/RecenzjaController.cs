@@ -49,7 +49,7 @@ namespace Przepisy.Intranet.Controllers.Uzytkownicy
         // GET: Recenzja/Create
         public IActionResult Create()
         {
-            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "OpisWykonania");
+            ViewData["PrzepisId"] = new SelectList(_context.Przepis, "IdPrzepisu", "Tytul");
             ViewData["UzytkownikId"] = new SelectList(_context.Set<Uzytkownik>(), "Id", "NazwaUzytkownika");
             return View();
         }
