@@ -109,6 +109,8 @@ namespace Przepisy.PortalWWW.Controllers
                     .ToListAsync();
             }
 
+            ModelState.Remove("zdjecie");// żeby nie wywałało błędu walidacji, gdy nie ma obrazku
+
             if (!ModelState.IsValid)
             {
                 await UzupelnijViewBagi();
@@ -116,7 +118,7 @@ namespace Przepisy.PortalWWW.Controllers
             }
 
             // upload i obsługa zjęć, jesli nie upload zdjecia to wtedu użuwa domyślne
-            string urlZdjecia = "/images/przepisy/przepis.jpg";
+            string urlZdjecia = "/images/przepisy/default.jpeg";//zamiast elsa po tym ifie, od razu domyślny obrazek, a potem ew. podmianka stringa
             if (zdjecie != null && zdjecie.Length > 0)
             {
                 var folderPath = Path.Combine(_hostEnvironment.WebRootPath, "images", "przepisy");
@@ -132,6 +134,11 @@ namespace Przepisy.PortalWWW.Controllers
 
                 urlZdjecia = "/images/przepisy/" + fileName;
             }
+            //else
+            //{
+            //    // defautowy obrazek
+            //    urlZdjecia = "/images/przepisy/default.jpeg";
+            //}
 
             // dodawnaie przpeisy do "kolekcji"
             var przepis = new Przepis
