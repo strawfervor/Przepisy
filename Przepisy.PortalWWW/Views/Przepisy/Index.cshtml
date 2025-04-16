@@ -14,7 +14,9 @@
             <option value="">Wszystkie</option>
             @foreach (var kuchnia in ViewBag.ModelRodzaje)
             {
-                <option value="@kuchnia.IdKuchni">@kuchnia.Nazwa</option>
+                <option value="@kuchnia.IdKuchni" selected="@(ViewBag.SelectedKuchnia != null && (int)ViewBag.SelectedKuchnia == kuchnia.IdKuchni)">
+                    @kuchnia.Nazwa
+                </option>
             }
         </select>
     </div>
@@ -27,13 +29,16 @@
             <option value="">Wszystkie</option>
             @foreach (var grupa in ViewBag.ModelGrupy)
             {
-                <option value="@grupa.IdGrupyPrzepisu">@grupa.Nazwa</option>
+                <option value="@grupa.IdGrupyPrzepisu" selected="@(ViewBag.SelectedGrupa != null && (int)ViewBag.SelectedGrupa == grupa.IdGrupyPrzepisu)">
+                    @grupa.Nazwa
+                </option>
             }
         </select>
     </div>
 
     <button type="submit" class="btn btn-secondary">Filtruj</button>
 </form>
+
 
 
 @await Html.PartialAsync("_KartaPrzepis", Model)
